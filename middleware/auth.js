@@ -9,7 +9,7 @@ const generateToken = (adminId, role) => {
   return jwt.sign(
     { id: adminId, role },
     JWT_SECRET,
-    { expiresIn: '24h' }
+    { expiresIn: '12h' }
   );
 };
 
@@ -17,14 +17,14 @@ const generateToken = (adminId, role) => {
 const verifyToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
-    
+
     if (!token) {
       return res.status(401).json({ error: 'Access denied. No token provided.' });
     }
 
     const decoded = jwt.verify(token, JWT_SECRET);
     const admin = await Admin.findById(decoded.id).select('-password');
-    
+
     if (!admin || !admin.isActive) {
       return res.status(401).json({ error: 'Invalid token or admin inactive.' });
     }

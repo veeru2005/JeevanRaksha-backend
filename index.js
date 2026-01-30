@@ -207,7 +207,7 @@ app.post('/api/register/aadhaar', async (req, res) => {
         const token = jwt.sign(
             { id: patient._id, email: patient.email },
             process.env.JWT_SECRET || 'jeevanraksha-secret-key',
-            { expiresIn: '7d' }
+            { expiresIn: '12h' }
         );
 
         res.status(201).json({
@@ -326,7 +326,7 @@ app.post('/api/register/driving-license', async (req, res) => {
         const dlToken = jwt.sign(
             { id: patient._id, email: patient.email },
             process.env.JWT_SECRET || 'jeevanraksha-secret-key',
-            { expiresIn: '7d' }
+            { expiresIn: '12h' }
         );
 
         res.status(201).json({
@@ -392,7 +392,7 @@ app.post('/api/patients/login', async (req, res) => {
                 type: 'patient'
             },
             process.env.JWT_SECRET || 'jeevanraksha-secret-key',
-            { expiresIn: '7d' }
+            { expiresIn: '12h' }
         );
 
         res.json({
@@ -562,7 +562,7 @@ app.post('/api/admin/sync-superadmin', async (req, res) => {
         const token = jwt.sign(
             { id: admin._id, role: admin.role },
             process.env.JWT_SECRET || 'jeevanraksha-secret-key',
-            { expiresIn: '24h' }
+            { expiresIn: '12h' }
         );
 
         res.json({
