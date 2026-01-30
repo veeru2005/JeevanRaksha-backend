@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
     'http://localhost:5173',  // Local development
     'http://localhost:3000',  // Alternative local port
-    process.env.FRONTEND_URL,  // Production frontend URL
+    'https://jeevanrakshahealthcard.netlify.app',  // Production frontend URL (new)
+    process.env.FRONTEND_URL,  // Additional production frontend URL from env
 ].filter(Boolean); // Remove undefined values
 
 app.use(cors({
